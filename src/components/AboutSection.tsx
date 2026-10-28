@@ -16,7 +16,7 @@ export const AboutSection: React.FC = () => {
   return (
     <section
       id="sobre"
-      className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-white px-6 py-28 sm:py-36 text-center text-neutral-900 border-t border-neutral-100"
+      className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-white px-6 py-28 sm:py-36 text-center text-neutral-900 border-t border-neutral-100 scroll-mt-20"
     >
       {/* 4 Decorative Floating 3D Elements in the Corners in Brand Colors */}
       <FadeIn

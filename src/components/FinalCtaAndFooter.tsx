@@ -1,13 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BestFarmaLogo } from './BestFarmaLogo';
-import { MessageCircle, ShieldCheck, MapPin, Phone, ArrowUp } from 'lucide-react';
+import { MessageCircle, ShieldCheck, MapPin, Phone, ArrowUp, Lock, Check } from 'lucide-react';
 
 export const FinalCtaAndFooter: React.FC = () => {
+  const [lgpdAccepted, setLgpdAccepted] = useState(true);
+
+  useEffect(() => {
+    try {
+      const consent = localStorage.getItem('bestfarma_lgpd_consent');
+      if (!consent) {
+        setLgpdAccepted(false);
+      }
+    } catch {
+      // LocalStorage access fail-safe
+      setLgpdAccepted(true);
+    }
+  }, []);
+
+  const handleAcceptLgpd = () => {
+    try {
+      localStorage.setItem('bestfarma_lgpd_consent', 'true');
+    } catch {
+      // ignore storage error
+    }
+    setLgpdAccepted(true);
+  };
+
   const whatsappUrl =
     'https://wa.me/5515998183108?text=Olá!%20Encontrei%20a%20Best%20Farma%20pelo%20site%20e%20gostaria%20de%20tirar%20uma%20dúvida.';
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -47,7 +72,8 @@ export const FinalCtaAndFooter: React.FC = () => {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 rounded-full bg-[#FFD100] px-8 sm:px-10 py-4 sm:py-5 text-sm sm:text-base font-heading font-black uppercase tracking-wider text-[#9A100D] shadow-[0_10px_30px_rgba(0,0,0,0.25)] transition-all duration-300 hover:scale-105 active:scale-95 hover:bg-[#FFE043] ring-2 ring-white/80"
+              aria-label="Iniciar Conversa no WhatsApp com a Best Farma"
+              className="group inline-flex items-center gap-3 rounded-full bg-[#FFD100] px-8 sm:px-10 py-4 sm:py-5 text-sm sm:text-base font-heading font-black uppercase tracking-wider text-[#9A100D] shadow-[0_10px_30px_rgba(0,0,0,0.25)] transition-all duration-300 hover:scale-105 active:scale-95 hover:bg-[#FFE043] ring-2 ring-white/80 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white"
             >
               <MessageCircle className="w-5 h-5 fill-current text-[#9A100D] transition-transform group-hover:rotate-12" />
               <span>Iniciar Conversa no WhatsApp</span>
@@ -88,19 +114,19 @@ export const FinalCtaAndFooter: React.FC = () => {
               </h4>
               <ul className="space-y-2 text-sm text-neutral-600 font-medium">
                 <li>
-                  <a href="#inicio" className="hover:text-[#E31C19] transition-colors">Início</a>
+                  <a href="#inicio" className="hover:text-[#E31C19] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#E31C19] rounded">Início</a>
                 </li>
                 <li>
-                  <a href="#sobre" className="hover:text-[#E31C19] transition-colors">Sobre a Best Farma</a>
+                  <a href="#sobre" className="hover:text-[#E31C19] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#E31C19] rounded">Sobre a Best Farma</a>
                 </li>
                 <li>
-                  <a href="#diferenciais" className="hover:text-[#E31C19] transition-colors">Diferenciais</a>
+                  <a href="#diferenciais" className="hover:text-[#E31C19] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#E31C19] rounded">Diferenciais</a>
                 </li>
                 <li>
-                  <a href="#categorias" className="hover:text-[#E31C19] transition-colors">Linhas de Cuidado</a>
+                  <a href="#categorias" className="hover:text-[#E31C19] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#E31C19] rounded">Linhas de Cuidado</a>
                 </li>
                 <li>
-                  <a href="#localizacao" className="hover:text-[#E31C19] transition-colors">Localização & Mapa</a>
+                  <a href="#localizacao" className="hover:text-[#E31C19] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#E31C19] rounded">Localização & Mapa</a>
                 </li>
               </ul>
             </div>
@@ -114,8 +140,8 @@ export const FinalCtaAndFooter: React.FC = () => {
               <div className="space-y-1.5 text-xs text-neutral-600 leading-relaxed">
                 <p><strong className="text-neutral-900">Razão Social:</strong> Best Farma Farmácia e Drogaria Ltda.</p>
                 <p><strong className="text-neutral-900">Localidade:</strong> Sorocaba - Estado de São Paulo</p>
-                <p><strong className="text-neutral-900">Registro Sanitário:</strong> Licença de Funcionamento Sanitário Municipal</p>
-                <p><strong className="text-neutral-900">CRF-SP:</strong> Farmacêutico Responsável Técnico habilitado</p>
+                <p><strong className="text-neutral-900">Registro Sanitário:</strong> Licença Sanitária Municipal Ativa</p>
+                <p><strong className="text-neutral-900">CRF-SP:</strong> Farmacêutico Responsável Técnico Habilitado</p>
                 <p><strong className="text-neutral-900">Atendimento:</strong> Seg. a Sáb. até as 20h00</p>
               </div>
             </div>
@@ -140,8 +166,8 @@ export const FinalCtaAndFooter: React.FC = () => {
               </span>
               <button
                 onClick={scrollToTop}
-                className="w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center text-neutral-700 transition-colors"
-                aria-label="Voltar ao topo"
+                className="w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center text-neutral-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E31C19]"
+                aria-label="Voltar ao topo da página"
               >
                 <ArrowUp className="w-4 h-4" />
               </button>
@@ -150,14 +176,45 @@ export const FinalCtaAndFooter: React.FC = () => {
         </div>
       </footer>
 
+      {/* LGPD & PRIVACY COMPLIANCE NOTICE */}
+      {!lgpdAccepted && (
+        <aside
+          aria-label="Aviso de Privacidade e Conformidade LGPD"
+          className="fixed bottom-4 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-md z-40 rounded-2xl bg-white border-2 border-neutral-200 shadow-2xl p-4 sm:p-5 animate-in slide-in-from-bottom duration-300"
+        >
+          <div className="flex items-start gap-3">
+            <div className="w-8 h-8 rounded-xl bg-red-50 flex items-center justify-center shrink-0">
+              <Lock className="w-4 h-4 text-[#E31C19]" />
+            </div>
+            <div className="flex-1">
+              <p className="text-xs font-bold text-neutral-900 uppercase tracking-wider">
+                Privacidade & Proteção de Dados (LGPD)
+              </p>
+              <p className="text-[11px] text-neutral-600 mt-1 leading-relaxed">
+                Este site é estritamente institucional. Não coletamos dados sensíveis de saúde nem receitas através desta página.
+              </p>
+              <div className="mt-3 flex items-center gap-2">
+                <button
+                  onClick={handleAcceptLgpd}
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#E31C19] px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-white hover:bg-[#C71411] transition-colors cursor-pointer"
+                >
+                  <Check className="w-3.5 h-3.5" />
+                  <span>Entendido</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      )}
+
       {/* FLOATING WHATSAPP BUTTON (Pulsing in bottom-right corner) */}
       <aside aria-label="Atendimento via WhatsApp" className="fixed bottom-6 right-6 z-50">
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] text-white shadow-[0_10px_25px_rgba(37,211,102,0.4)] transition-transform duration-300 hover:scale-110 active:scale-95"
-          aria-label="Falar no WhatsApp com a Best Farma"
+          className="group relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] text-white shadow-[0_10px_25px_rgba(37,211,102,0.4)] transition-transform duration-300 hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#25D366]"
+          aria-label="Falar no WhatsApp com a Best Farma (15) 99818-3108"
         >
           {/* Subtle Ambient Pulse Rings */}
           <span className="absolute -inset-1 rounded-full bg-[#25D366] opacity-40 animate-ping pointer-events-none" />

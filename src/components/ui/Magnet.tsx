@@ -18,7 +18,12 @@ export const Magnet: React.FC<MagnetProps> = ({
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
-    if (disabled) return;
+    // Respect user's motion preferences
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (disabled || prefersReducedMotion) return;
     const node = containerRef.current;
     if (!node) return;
 
@@ -51,7 +56,7 @@ export const Magnet: React.FC<MagnetProps> = ({
       setPosition({ x: 0, y: 0 });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     node.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {

@@ -5,15 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Best Farma Farmácia</title>
     <meta name="description" content="Landing page institucional da Best Farma Farmácia em Sorocaba - SP. Cuidado humano, conveniência no Villagio Ipanema I e atendimento via WhatsApp." />
+    <meta name="theme-color" content="#E31C19" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <!-- Open Graph / Social Cards -->
     <meta property="og:title" content="Best Farma Farmácia" />
     <meta property="og:description" content="Landing page institucional da Best Farma Farmácia em Sorocaba - SP. Cuidado humano, conveniência no Villagio Ipanema I e atendimento via WhatsApp." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/assets/aistudio/image_73e5144f.png" />
-    <link rel="icon" type="image/png" href="/assets/aistudio/image_73e5144f.png" />
+    <meta property="og:locale" content="pt_BR" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/assets/aistudio/image_73e5144f.png" />
+
+    <link rel="icon" type="image/png" href="/assets/aistudio/image_73e5144f.png" />
+    <link rel="apple-touch-icon" href="/assets/aistudio/image_73e5144f.png" />
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Kanit:wght@700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Structured Data (JSON-LD) for LocalBusiness / Pharmacy in Sorocaba -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Pharmacy",
+      "name": "Best Farma Farmácia",
+      "image": "/assets/aistudio/image_73e5144f.png",
+      "telephone": "+55-15-99818-3108",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Manoel José de Oliveira, 710",
+        "addressLocality": "Sorocaba",
+        "addressRegion": "SP",
+        "postalCode": "18073-351",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -23.4475,
+        "longitude": -47.4891
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "08:00",
+          "closes": "20:00"
+        }
+      ],
+      "priceRange": "$$"
+    }
+    </script>
   </head>
   <body class="bg-white text-neutral-900 font-sans antialiased selection:bg-[#E31C19] selection:text-white">
     <div id="root"></div>

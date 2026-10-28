@@ -57,7 +57,7 @@ export const DifferentialsSection: React.FC = () => {
   return (
     <section
       id="diferenciais"
-      className="relative z-10 bg-[#F8F9FA] text-neutral-900 rounded-t-[50px] md:rounded-t-[60px] py-24 md:py-32 border-t border-neutral-200"
+      className="relative z-10 bg-[#F8F9FA] text-neutral-900 rounded-t-[50px] md:rounded-t-[60px] py-24 md:py-32 border-t border-neutral-200 scroll-mt-20"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}

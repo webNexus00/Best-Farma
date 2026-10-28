@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 
 interface FadeInProps {
   children: React.ReactNode;
@@ -18,7 +18,11 @@ export const FadeIn: React.FC<FadeInProps> = ({
   duration = 0.7,
   className = '',
 }) => {
+  const prefersReducedMotion = useReducedMotion();
+
   const getInitialPosition = () => {
+    if (prefersReducedMotion) return { x: 0, y: 0 };
+
     switch (direction) {
       case 'up':
         return { y: distance, x: 0 };
@@ -48,8 +52,8 @@ export const FadeIn: React.FC<FadeInProps> = ({
       }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{
-        duration,
-        delay,
+        duration: prefersReducedMotion ? 0.3 : duration,
+        delay: prefersReducedMotion ? 0 : delay,
         ease: [0.25, 0.1, 0.25, 1],
       }}
       className={className}

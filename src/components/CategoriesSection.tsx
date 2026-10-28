@@ -146,7 +146,7 @@ export const CategoriesSection: React.FC = () => {
   return (
     <section
       id="categorias"
-      className="relative z-20 bg-white pt-24 pb-32 text-neutral-900 border-t border-neutral-100"
+      className="relative z-20 bg-white pt-24 pb-32 text-neutral-900 border-t border-neutral-100 scroll-mt-20"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}

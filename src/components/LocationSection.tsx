@@ -23,22 +23,17 @@ export const LocationSection: React.FC = () => {
     'Entrega no Villagio Ipanema I',
   ];
 
-  const handleSendCustomMessage = (e: React.FormEvent) => {
-    e.preventDefault();
-    const fullText = `Olá, Best Farma! Assunto: ${selectedTopic}. ${
-      customItem ? `Item/Detalhe: ${customItem}` : ''
-    }`;
-    window.open(
-      `https://wa.me/5515998183108?text=${encodeURIComponent(fullText)}`,
-      '_blank',
-      'noopener,noreferrer'
-    );
-  };
+  // Sanitized text and pre-computed safe link avoiding window.open in iframe
+  const sanitizedItem = customItem.trim().slice(0, 120);
+  const fullText = `Olá, Best Farma! Assunto: ${selectedTopic}.${
+    sanitizedItem ? ` Item/Detalhe: ${sanitizedItem}` : ''
+  }`;
+  const whatsappInquiryUrl = `https://wa.me/5515998183108?text=${encodeURIComponent(fullText)}`;
 
   return (
     <section
       id="localizacao"
-      className="relative z-20 bg-[#F4F6F8] py-24 sm:py-32 text-neutral-900 border-t border-neutral-200"
+      className="relative z-20 bg-[#F4F6F8] py-24 sm:py-32 text-neutral-900 border-t border-neutral-200 scroll-mt-20"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
@@ -120,7 +115,7 @@ export const LocationSection: React.FC = () => {
                     href={googleMapsRouteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 rounded-2xl border-2 border-[#E31C19] bg-white py-3.5 px-4 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#E31C19] transition-all hover:bg-[#E31C19] hover:text-white shadow-xs"
+                    className="w-full inline-flex items-center justify-center gap-2 rounded-2xl border-2 border-[#E31C19] bg-white py-3.5 px-4 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#E31C19] transition-all hover:bg-[#E31C19] hover:text-white shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E31C19]"
                   >
                     <Navigation className="w-4 h-4 text-[#FFD100]" />
                     <span>Como Chegar (Traçar Rota no Google Maps)</span>
@@ -129,7 +124,7 @@ export const LocationSection: React.FC = () => {
               </div>
             </FadeIn>
 
-            {/* Quick Interactive Inquiry Form */}
+            {/* Quick Interactive Inquiry Form (Opens via safe accessible <a> link, no popup blocker) */}
             <FadeIn delay={0.2}>
               <div className="rounded-3xl bg-white border-2 border-red-100 p-6 sm:p-8 shadow-sm">
                 <div className="flex items-center gap-2 mb-3">
@@ -139,13 +134,16 @@ export const LocationSection: React.FC = () => {
                   </h4>
                 </div>
 
-                <form onSubmit={handleSendCustomMessage} className="space-y-4">
+                <div className="space-y-4">
                   <div>
-                    <label className="block text-xs font-bold text-neutral-700 mb-1.5">Qual é a sua dúvida?</label>
+                    <label htmlFor="inquiry-topic" className="block text-xs font-bold text-neutral-700 mb-1.5">
+                      Qual é a sua dúvida?
+                    </label>
                     <select
+                      id="inquiry-topic"
                       value={selectedTopic}
                       onChange={(e) => setSelectedTopic(e.target.value)}
-                      className="w-full rounded-xl bg-neutral-50 border border-neutral-300 px-3.5 py-2.5 text-xs text-neutral-800 font-medium focus:outline-none focus:border-[#E31C19]"
+                      className="w-full rounded-xl bg-neutral-50 border border-neutral-300 px-3.5 py-2.5 text-xs text-neutral-800 font-medium focus:outline-none focus:border-[#E31C19] focus:ring-1 focus:ring-[#E31C19]"
                     >
                       {quickTopics.map((topic, i) => (
                         <option key={i} value={topic} className="bg-white text-neutral-800">
@@ -156,27 +154,31 @@ export const LocationSection: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-neutral-700 mb-1.5">
+                    <label htmlFor="inquiry-details" className="block text-xs font-bold text-neutral-700 mb-1.5">
                       Nome do produto ou mensagem adicional (opcional):
                     </label>
                     <input
+                      id="inquiry-details"
                       type="text"
+                      maxLength={120}
                       placeholder="Ex: Protetor Solar FPS 50 ou Dipirona..."
                       value={customItem}
                       onChange={(e) => setCustomItem(e.target.value)}
-                      className="w-full rounded-xl bg-neutral-50 border border-neutral-300 px-3.5 py-2.5 text-xs text-neutral-800 placeholder-neutral-400 focus:outline-none focus:border-[#E31C19]"
-                    >
-                    </input>
+                      className="w-full rounded-xl bg-neutral-50 border border-neutral-300 px-3.5 py-2.5 text-xs text-neutral-800 placeholder-neutral-400 focus:outline-none focus:border-[#E31C19] focus:ring-1 focus:ring-[#E31C19]"
+                    />
                   </div>
 
-                  <button
-                    type="submit"
-                    className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#E31C19] py-3 text-xs font-black uppercase tracking-wider text-white transition-all hover:bg-[#C71411] cursor-pointer shadow-md"
+                  {/* Direct Link avoiding window.open popup restrictions */}
+                  <a
+                    href={whatsappInquiryUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#E31C19] py-3.5 text-xs font-black uppercase tracking-wider text-white transition-all hover:bg-[#C71411] cursor-pointer shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#E31C19]"
                   >
                     <Send className="w-3.5 h-3.5 text-[#FFD100]" />
                     <span>Enviar para a Farmácia no WhatsApp</span>
-                  </button>
-                </form>
+                  </a>
+                </div>
               </div>
             </FadeIn>
           </div>
@@ -190,6 +192,7 @@ export const LocationSection: React.FC = () => {
                   src="https://maps.google.com/maps?q=Rua%20Manoel%20Jos%C3%A9%20de%20Oliveira,%20710%20-%20Jardim%20Residencial%20Villagio%20Ipanema%20I,%20Sorocaba%20-%20SP&t=&z=16&ie=UTF8&iwloc=&output=embed"
                   className="w-full h-full border-0 filter contrast-[1.02]"
                   loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
                   allowFullScreen
                 />
 
