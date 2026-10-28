@@ -27,7 +27,7 @@ export const FinalCtaAndFooter: React.FC = () => {
   };
 
   const whatsappUrl =
-    'https://wa.me/5515998183108?text=Olá!%20Encontrei%20a%20Best%20Farma%20pelo%20site%20e%20gostaria%20de%20tirar%20uma%20dúvida.';
+    'https://wa.me/5515997376460?text=Olá!%20Encontrei%20a%20Best%20Farma%20pelo%20site%20e%20gostaria%20de%20tirar%20uma%20dúvida.';
 
   const scrollToTop = () => {
     if (typeof window !== 'undefined') {
@@ -81,7 +81,7 @@ export const FinalCtaAndFooter: React.FC = () => {
           </div>
 
           <p className="mt-5 text-xs text-white/80">
-            WhatsApp Oficial: <span className="font-mono font-bold text-[#FFD100]">(15) 99818-3108</span> · Sem robôs cansativos, direto com a equipe.
+            WhatsApp Oficial: <span className="font-mono font-bold text-[#FFD100]">(15) 99737-6460</span> · Sem robôs cansativos, direto com a equipe.
           </p>
         </div>
       </section>
@@ -103,7 +103,7 @@ export const FinalCtaAndFooter: React.FC = () => {
               </div>
               <div className="flex items-center gap-2 text-xs text-neutral-600">
                 <Phone className="w-4 h-4 text-[#FFB703] shrink-0" />
-                <span className="font-mono font-bold text-neutral-800">(15) 99818-3108</span>
+                <span className="font-mono font-bold text-neutral-800">(15) 99737-6460</span>
               </div>
             </div>
 
@@ -214,7 +214,7 @@ export const FinalCtaAndFooter: React.FC = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="group relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] text-white shadow-[0_10px_25px_rgba(37,211,102,0.4)] transition-transform duration-300 hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#25D366]"
-          aria-label="Falar no WhatsApp com a Best Farma (15) 99818-3108"
+          aria-label="Falar no WhatsApp com a Best Farma (15) 99737-6460"
         >
           {/* Subtle Ambient Pulse Rings */}
           <span className="absolute -inset-1 rounded-full bg-[#25D366] opacity-40 animate-ping pointer-events-none" />

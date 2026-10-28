@@ -23,8 +23,8 @@ export const GhostPillButton: React.FC<GhostPillButtonProps> = ({
   const targetHref =
     href ||
     (message
-      ? `https://wa.me/5515998183108?text=${encodeURIComponent(message)}`
-      : 'https://wa.me/5515998183108?text=Olá!%20Gostaria%20de%20consultar%20a%20disponibilidade%20de%20um%20produto.');
+      ? `https://wa.me/5515997376460?text=${encodeURIComponent(message)}`
+      : 'https://wa.me/5515997376460?text=Olá!%20Gostaria%20de%20consultar%20a%20disponibilidade%20de%20um%20produto.');
 
   const colorClasses = onDark
     ? 'border-white text-white hover:bg-white hover:text-[#E31C19]'

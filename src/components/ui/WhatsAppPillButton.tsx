@@ -20,7 +20,7 @@ export const WhatsAppPillButton: React.FC<WhatsAppPillButtonProps> = ({
   variant = 'yellow',
   onClick,
 }) => {
-  const defaultHref = `https://wa.me/5515998183108?text=${encodeURIComponent(message)}`;
+  const defaultHref = `https://wa.me/5515997376460?text=${encodeURIComponent(message)}`;
 
   const sizeClasses = {
     sm: 'px-5 py-2.5 text-xs',

@@ -91,7 +91,7 @@ const row2Pillars: PillarBadge[] = [
   },
   {
     title: 'WhatsApp Ágil',
-    highlight: '(15) 99818-3108',
+    highlight: '(15) 99737-6460',
     icon: <PhoneCall className="w-4 h-4 text-[#E31C19]" />,
   },
   {
@@ -182,7 +182,7 @@ export const MarqueeSection: React.FC = () => {
                 <div className="flex items-center justify-between pt-3 border-t border-neutral-100 text-xs text-neutral-500 font-medium">
                   <span className="tracking-wider uppercase font-semibold text-neutral-700">{card.tag}</span>
                   <a
-                    href={`https://wa.me/5515998183108?text=Olá!%20Gostaria%20de%20consultar%20produtos%20da%20categoria%20${encodeURIComponent(card.title)}.`}
+                    href={`https://wa.me/5515997376460?text=Olá!%20Gostaria%20de%20consultar%20produtos%20da%20categoria%20${encodeURIComponent(card.title)}.`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#E31C19] font-bold hover:underline inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform"

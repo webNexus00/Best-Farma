@@ -63,14 +63,14 @@ export const HeroSection: React.FC = () => {
           {/* Zone 3: 1 Primary Quick Action Button */}
           <div className="hidden sm:flex items-center gap-4 shrink-0">
             <a
-              href="https://wa.me/5515998183108?text=Olá!%20Gostaria%20de%20falar%20com%20a%20Best%20Farma."
+              href="https://wa.me/5515997376460?text=Olá!%20Gostaria%20de%20falar%20com%20a%20Best%20Farma."
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Falar no WhatsApp com Best Farma (15) 99818-3108"
+              aria-label="Falar no WhatsApp com Best Farma (15) 99737-6460"
               className="flex items-center gap-2 rounded-full border-2 border-[#E31C19] bg-[#E31C19] px-5 py-2 text-xs font-black tracking-wider text-white transition-all shadow-md hover:bg-[#C71411] hover:border-[#C71411] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#E31C19]"
             >
               <MessageCircle className="w-3.5 h-3.5 text-[#FFD100] fill-current" />
-              <span className="whitespace-nowrap font-mono tabular-nums">(15) 99818-3108</span>
+              <span className="whitespace-nowrap font-mono tabular-nums">(15) 99737-6460</span>
             </a>
           </div>
 
@@ -104,13 +104,13 @@ export const HeroSection: React.FC = () => {
             ))}
             <div className="pt-2 border-t border-neutral-200 flex flex-col gap-2">
               <a
-                href="https://wa.me/5515998183108?text=Olá!%20Gostaria%20de%20falar%20com%20a%20Best%20Farma."
+                href="https://wa.me/5515997376460?text=Olá!%20Gostaria%20de%20falar%20com%20a%20Best%20Farma."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 rounded-full bg-[#E31C19] py-2.5 text-xs font-bold uppercase tracking-wider text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E31C19]"
               >
                 <MessageCircle className="w-4 h-4 text-[#FFD100] fill-current" />
-                <span>WhatsApp: (15) 99818-3108</span>
+                <span>WhatsApp: (15) 99737-6460</span>
               </a>
             </div>
           </div>

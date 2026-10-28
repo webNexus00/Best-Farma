@@ -28,7 +28,7 @@ export const LocationSection: React.FC = () => {
   const fullText = `Olá, Best Farma! Assunto: ${selectedTopic}.${
     sanitizedItem ? ` Item/Detalhe: ${sanitizedItem}` : ''
   }`;
-  const whatsappInquiryUrl = `https://wa.me/5515998183108?text=${encodeURIComponent(fullText)}`;
+  const whatsappInquiryUrl = `https://wa.me/5515997376460?text=${encodeURIComponent(fullText)}`;
 
   return (
     <section
@@ -101,7 +101,7 @@ export const LocationSection: React.FC = () => {
                   <div>
                     <h4 className="font-heading font-bold text-lg text-neutral-900">WhatsApp & Telefone</h4>
                     <p className="text-lg font-mono font-black text-[#E31C19] mt-1">
-                      (15) 99818-3108
+                      (15) 99737-6460
                     </p>
                     <p className="text-xs text-neutral-500 mt-0.5">
                       Respostas ágeis diretamente com a equipe

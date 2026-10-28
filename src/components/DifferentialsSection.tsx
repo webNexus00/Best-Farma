@@ -32,7 +32,7 @@ const differentials: DifferentialItem[] = [
     title: 'Canal Digital Descomplicado',
     description:
       'Atendimento ágil via WhatsApp para consulta de disponibilidade de itens sem burocracia. Respostas rápidas e suporte direto com a nossa equipe.',
-    highlight: 'Contato oficial: (15) 99818-3108 a um toque de distância.',
+    highlight: 'Contato oficial: (15) 99737-6460 a um toque de distância.',
     icon: <MessageSquare className="w-5 h-5 text-[#E31C19]" />,
   },
   {
