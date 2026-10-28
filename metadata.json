@@ -1,0 +1,6 @@
+{
+  "name": "Best Farma Farmácia",
+  "description": "Landing page institucional premium da Best Farma Farmácia em Sorocaba - SP. Cuidado humano, conveniência no Villagio Ipanema I e atendimento via WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
