@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { BestFarmaLogo, VolumetricHeroCross } from './BestFarmaLogo';
 import { Magnet } from './ui/Magnet';
 import { WhatsAppPillButton } from './ui/WhatsAppPillButton';
-import { MessageCircle, Menu, X, Clock, MapPin } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+import { MessageCircle, Menu, X, Clock, MapPin, ShoppingBag, ArrowRight } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { totalItems, openCart } = useCart();
 
   const navLinks = [
     { label: 'Início', href: '#inicio' },
+    { label: 'Catálogo', href: '#catalogo' },
     { label: 'Sobre', href: '#sobre' },
     { label: 'Diferenciais', href: '#diferenciais' },
     { label: 'Categorias', href: '#categorias' },
@@ -35,9 +38,9 @@ export const HeroSection: React.FC = () => {
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-[#FFD100]/25 via-white/15 to-transparent blur-3xl pointer-events-none -z-10" />
       <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-black/20 to-transparent pointer-events-none -z-10" />
 
-      {/* Top Bar Contract (1 row, 3 zones: Brand, Nav Links, 1 Primary Action) */}
-      <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/95 border-b border-red-100 shadow-sm transition-all">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-8 px-4 sm:px-6 lg:px-8">
+      {/* Top Bar Contract (1 row, 3 zones: Brand, Nav Links, Primary Actions) */}
+      <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-white/95 border-b border-red-100 shadow-sm transition-all">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
           {/* Zone 1: Single text element wordmark + authentic brand logo */}
           <a
             href="#inicio"
@@ -48,7 +51,7 @@ export const HeroSection: React.FC = () => {
           </a>
 
           {/* Zone 2: Concise single-line text navigation links */}
-          <nav aria-label="Navegação principal" className="hidden lg:flex items-center gap-8">
+          <nav aria-label="Navegação principal" className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -60,37 +63,54 @@ export const HeroSection: React.FC = () => {
             ))}
           </nav>
 
-          {/* Zone 3: 1 Primary Quick Action Button */}
-          <div className="hidden sm:flex items-center gap-4 shrink-0">
-            <a
-              href="https://wa.me/5515997376460?text=Olá!%20Gostaria%20de%20falar%20com%20a%20Best%20Farma."
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Falar no WhatsApp com Best Farma (15) 99737-6460"
-              className="flex items-center gap-2 rounded-full border-2 border-[#E31C19] bg-[#E31C19] px-5 py-2 text-xs font-black tracking-wider text-white transition-all shadow-md hover:bg-[#C71411] hover:border-[#C71411] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#E31C19]"
+          {/* Zone 3: Cart Action + Primary Quick Action Button */}
+          <div className="flex items-center gap-3 shrink-0">
+            {/* Interactive Cart Button */}
+            <button
+              onClick={openCart}
+              aria-label={`Abrir carrinho com ${totalItems} itens`}
+              className="relative p-2.5 rounded-full border border-neutral-200 bg-white text-neutral-800 hover:text-[#E31C19] hover:border-[#E31C19] transition-all shadow-xs cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E31C19]"
             >
-              <MessageCircle className="w-3.5 h-3.5 text-[#FFD100] fill-current" />
-              <span className="whitespace-nowrap font-mono tabular-nums">(15) 99737-6460</span>
-            </a>
-          </div>
+              <ShoppingBag className="w-5 h-5" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-[#E31C19] text-white text-[10px] font-black flex items-center justify-center animate-in zoom-in-50 duration-200 shadow-sm">
+                  {totalItems}
+                </span>
+              )}
+            </button>
 
-          {/* Mobile Menu Trigger */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-nav"
-            className="flex lg:hidden p-2 text-neutral-700 hover:text-[#E31C19] rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E31C19]"
-            aria-label={mobileMenuOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+            {/* Quick WhatsApp Button */}
+            <div className="hidden sm:flex items-center">
+              <a
+                href="https://wa.me/5515997376460?text=Olá!%20Gostaria%20de%20falar%20com%20a%20Best%20Farma."
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Falar no WhatsApp com Best Farma (15) 99737-6460"
+                className="flex items-center gap-2 rounded-full border-2 border-[#E31C19] bg-[#E31C19] px-4.5 py-2 text-xs font-black tracking-wider text-white transition-all shadow-md hover:bg-[#C71411] hover:border-[#C71411] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#E31C19]"
+              >
+                <MessageCircle className="w-3.5 h-3.5 text-[#FFD100] fill-current" />
+                <span className="whitespace-nowrap font-mono tabular-nums">(15) 99737-6460</span>
+              </a>
+            </div>
+
+            {/* Mobile Menu Trigger */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav"
+              className="flex lg:hidden p-2 text-neutral-700 hover:text-[#E31C19] rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E31C19]"
+              aria-label={mobileMenuOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Dropdown */}
         {mobileMenuOpen && (
           <div
             id="mobile-nav"
-            className="lg:hidden border-b border-neutral-200 bg-white px-6 py-4 flex flex-col gap-4 shadow-lg animate-in slide-in-from-top duration-200"
+            className="lg:hidden border-b border-neutral-200 bg-white px-6 py-4 flex flex-col gap-3 shadow-lg animate-in slide-in-from-top duration-200"
           >
             {navLinks.map((link) => (
               <a
@@ -102,7 +122,18 @@ export const HeroSection: React.FC = () => {
                 {link.label}
               </a>
             ))}
-            <div className="pt-2 border-t border-neutral-200 flex flex-col gap-2">
+            <div className="pt-3 border-t border-neutral-200 flex flex-col gap-2">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  openCart();
+                }}
+                className="flex items-center justify-center gap-2 rounded-full border border-neutral-300 py-2.5 text-xs font-bold uppercase tracking-wider text-neutral-800 hover:border-[#E31C19]"
+              >
+                <ShoppingBag className="w-4 h-4 text-[#E31C19]" />
+                <span>Ver Meu Carrinho ({totalItems})</span>
+              </button>
+
               <a
                 href="https://wa.me/5515997376460?text=Olá!%20Gostaria%20de%20falar%20com%20a%20Best%20Farma."
                 target="_blank"
@@ -139,6 +170,18 @@ export const HeroSection: React.FC = () => {
           </Magnet>
         </div>
 
+        {/* Direct Link to the Digital Catalog */}
+        <div className="relative z-20 mt-2">
+          <a
+            href="#catalogo"
+            className="inline-flex items-center gap-2 rounded-full bg-white/20 hover:bg-white text-white hover:text-[#E31C19] px-6 py-2.5 text-xs font-extrabold uppercase tracking-widest backdrop-blur-md border border-white/40 shadow-md transition-all hover:scale-105"
+          >
+            <ShoppingBag className="w-4 h-4" />
+            <span>Explorar Catálogo Digital</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </a>
+        </div>
+
         {/* Subtle Decorative Rings */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] sm:w-[500px] h-[360px] sm:h-[500px] rounded-full border border-white/20 pointer-events-none -z-10" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[540px] sm:w-[760px] h-[540px] sm:h-[760px] rounded-full border border-[#FFD100]/25 pointer-events-none -z-10" />
@@ -161,7 +204,7 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* Right WhatsApp Pill Button in Yellow Variant */}
-          <div className="shrink-0">
+          <div className="shrink-0 flex items-center gap-3">
             <WhatsAppPillButton
               label="FALAR COM A FARMÁCIA"
               size="md"

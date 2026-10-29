@@ -117,6 +117,9 @@ export const FinalCtaAndFooter: React.FC = () => {
                   <a href="#inicio" className="hover:text-[#E31C19] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#E31C19] rounded">Início</a>
                 </li>
                 <li>
+                  <a href="#catalogo" className="hover:text-[#E31C19] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#E31C19] rounded">Catálogo Digital</a>
+                </li>
+                <li>
                   <a href="#sobre" className="hover:text-[#E31C19] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#E31C19] rounded">Sobre a Best Farma</a>
                 </li>
                 <li>
